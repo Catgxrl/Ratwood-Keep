@@ -22,14 +22,14 @@
 	var/can_repair = TRUE
 
 /obj/item/needle/examine()
-	. = ..()
-	if(!infinite)
-		if(stringamt > 0)
-			. += span_bold("It has [stringamt] uses left.")
-		else
-			. += span_bold("It has no uses left.")
-	else
-		. += "Can be used indefinitely."
+    . = ..()
+    if(stringamt <= 20)
+        if(stringamt > 0)
+            . += span_bold("It has [stringamt] uses left.")
+        else
+            . += span_bold("It has no uses left.")
+    else
+        . += "Can be used indefinitely."	
 
 /obj/item/needle/Initialize()
 	. = ..()
@@ -184,4 +184,6 @@
 /obj/item/needle/pestra
 	name = "needle of pestra"
 	desc = span_green("This needle has been blessed by the goddess of medicine herself!")
-	infinite = TRUE
+	stringamt = INFINITY
+	maxstring = INFINITY
+	anvilrepair = null
